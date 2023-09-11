@@ -1,0 +1,277 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LexusAutomatedTest</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: LexusAutomatedTest (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LexusAutomatedTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (1/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    84.9%
+  </span>
+  <span class="absValue">
+    (79/93)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;import org.openqa.selenium.By;
+&nbsp;import org.openqa.selenium.JavascriptExecutor;
+&nbsp;import org.openqa.selenium.WebDriver;
+&nbsp;import org.openqa.selenium.WebElement;
+&nbsp;import org.openqa.selenium.chrome.ChromeDriver;
+&nbsp;
+<b class="nc">&nbsp;public class LexusAutomatedTest {</b>
+&nbsp;
+&nbsp;    public static void main(String[] args) {
+&nbsp;        // Set the path to the ChromeDriver executable
+<b class="fc">&nbsp;        System.setProperty(&quot;webdriver.chrome.driver&quot;, &quot;/Users/sanduniisa/IdeaProjects/Lexus Automated Test/chromedriver&quot;);</b>
+&nbsp;
+&nbsp;        // Initialize the WebDriver
+<b class="fc">&nbsp;        WebDriver driver = new ChromeDriver();</b>
+&nbsp;
+&nbsp;        try {
+&nbsp;
+<b class="fc">&nbsp;            driver.get(&quot;https://www.lexus.com.sg&quot;);</b>
+<b class="fc">&nbsp;            driver.manage().window().maximize();</b>
+<b class="fc">&nbsp;            WebElement acceptCookiesButton = driver.findElement(By.xpath(&quot;//*[@id=\&quot;consent_prompt_submit\&quot;]&quot;));</b>
+<b class="fc">&nbsp;            if (acceptCookiesButton != null) {</b>
+&nbsp;                // Click the &quot;Accept Cookies&quot; button
+<b class="fc">&nbsp;                acceptCookiesButton.click();</b>
+<b class="fc">&nbsp;                System.out.println(&quot;Cookies accepted.&quot;);</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                System.out.println(&quot;No &#39;Accept Cookies&#39; button found.&quot;);</b>
+&nbsp;            }
+&nbsp;
+&nbsp;            // Step 1: Check if banner exists on homepage
+<b class="fc">&nbsp;            WebElement bannerElement = driver.findElement(By.xpath(&quot;(//*[@class=&#39;masthead__wrapper&#39;])[1]&quot;));</b>
+<b class="fc">&nbsp;            if (bannerElement.isDisplayed()) {</b>
+<b class="fc">&nbsp;                System.out.println(&quot;Step 1 Banner exists on homepage.&quot;);</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                System.out.println(&quot;Step 1 Banner not found on homepage.&quot;);</b>
+&nbsp;            }
+&nbsp;
+&nbsp;            // Step 2: Verify masthead banner text
+<b class="fc">&nbsp;            String expectedBannerText = &quot;ALL-NEW LEXUS RX HYBRID&quot;;</b>
+<b class="fc">&nbsp;            WebElement actualBannerText = driver.findElement(By.xpath(&quot;//*[@id=\&quot;index_tiles\&quot;]/section[1]/div[1]/section[2]/section/h1&quot;));</b>
+<b class="fc">&nbsp;            String actualBannerGetText = actualBannerText.getText();</b>
+<b class="fc">&nbsp;            if (actualBannerGetText.contains(expectedBannerText)) {</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Step 2 Masthead banner is showing the expected text: &quot; + expectedBannerText);</b>
+&nbsp;            } else {
+<b class="fc">&nbsp;                System.out.println(&quot;Step 2 Masthead banner is not showing the expected text: &quot; + expectedBannerText);</b>
+&nbsp;            }
+&nbsp;
+&nbsp;            // Step 3: Check if video exists and can play
+<b class="fc">&nbsp;            WebElement selectModel = driver.findElement(By.xpath(&quot;(//div//p[text()=\&quot;Compact Luxury SUV\&quot;])[3]&quot;));</b>
+<b class="fc">&nbsp;            if (selectModel != null) {</b>
+&nbsp;                //click UX Compact Luxury SUV
+<b class="fc">&nbsp;                selectModel.click();</b>
+<b class="fc">&nbsp;                System.out.println(&quot;Step 3 UX Compact Luxury SUV selected&quot;);</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                System.out.println(&quot;Step 3 No &#39;UX Compact Luxury SUV not found&quot;);</b>
+&nbsp;            }
+&nbsp;
+&nbsp;            //Step 4 verify user navigate to  https://www.lexus.com.sg/en/models/ux.html URL
+<b class="fc">&nbsp;            String currentURL = driver.getCurrentUrl();</b>
+<b class="fc">&nbsp;            if (currentURL.equals(&quot;https://www.lexus.com.sg/en/models/ux.html&quot;)) {</b>
+<b class="fc">&nbsp;                System.out.println(&quot;Step 4 Current URL matches the expected URL.&quot;);</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                System.out.println(&quot;Step 4 Current URL does not match the expected URL.&quot;);</b>
+&nbsp;            }
+&nbsp;
+&nbsp;            // Scroll down to the gallery section
+<b class="fc">&nbsp;            WebElement gallerySection = driver.findElement(By.xpath(&quot;//*[@id=\&quot;gallery\&quot;]/div/div/div/header/h2&quot;));</b>
+<b class="fc">&nbsp;            ((JavascriptExecutor) driver).executeScript(&quot;arguments[0].scrollIntoView(true);&quot;, gallerySection);</b>
+&nbsp;
+&nbsp;            // Wait for the UX Series YouTube video to load
+<b class="fc">&nbsp;            WebElement uxVideoFrame = driver.findElement(By.xpath(&quot;(//div[@data-src=&#39;https://www.youtube.com/watch?v=eokV5IpMGig&amp;rel=0&#39;])[1]&quot;));</b>
+&nbsp;
+&nbsp;            // Check if the video frame is displayed
+<b class="fc">&nbsp;            if (uxVideoFrame.isDisplayed()) {</b>
+<b class="fc">&nbsp;                System.out.println(&quot;Step 5 UX Series YouTube video is loaded and displayed.&quot;);</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                System.out.println(&quot;Step 5 UX Series YouTube video is not loaded.&quot;);</b>
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            if (uxVideoFrame.isEnabled()) {</b>
+<b class="fc">&nbsp;                System.out.println(&quot;Step 6 The video is playing.&quot;);</b>
+<b class="fc">&nbsp;                uxVideoFrame.click();</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                System.out.println(&quot;Step 6 The video is not playing.&quot;);</b>
+&nbsp;            }
+&nbsp;            //To pause the video
+<b class="fc">&nbsp;            WebElement closeIcon = driver.findElement(By.xpath(&quot;//*[@class=&#39;lg-close lg-icon&#39;]&quot;));</b>
+<b class="fc">&nbsp;            closeIcon.click();</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Step 7 Video is paused&quot;);</b>
+&nbsp;
+&nbsp;            //Step 8 Click Book a Test Drive Button
+<b class="fc">&nbsp;            WebElement bookATestDriveButton = driver.findElement(By.xpath(&quot;(//*[@class=&#39;mdc-button__label&#39;])[5]&quot;));</b>
+<b class="fc">&nbsp;            if (bookATestDriveButton != null) {</b>
+<b class="fc">&nbsp;                bookATestDriveButton.click();</b>
+<b class="fc">&nbsp;                System.out.println(&quot;Step 8 Book a Test Drive Button clicked&quot;);</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                System.out.println(&quot;Step 8 Book a test Drive Button is not clicked&quot;);</b>
+&nbsp;            }
+&nbsp;
+&nbsp;            //Step 9  verify user navigate to  https://www.lexus.com.sg/en/contact-us/book-a-test-drive.html?model=ux%20300e URL
+<b class="fc">&nbsp;            String formPageURL = driver.getCurrentUrl();</b>
+<b class="fc">&nbsp;            if (formPageURL.equals(&quot;https://www.lexus.com.sg/en/contact-us/book-a-test-drive.html?model=ux%20300e&quot;)) {</b>
+<b class="fc">&nbsp;                System.out.println(&quot;Step 9 Current URL matches the expected URL.&quot;);</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                System.out.println(&quot;Step 9 Current URL does not match the expected URL.&quot;);</b>
+&nbsp;            }
+&nbsp;
+&nbsp;            // Step 10: Fill the form
+<b class="fc">&nbsp;            WebElement firstName = driver.findElement(By.xpath(&quot;//*[@id=&#39;input_first_name&#39;]&quot;));</b>
+<b class="fc">&nbsp;            WebElement lastName = driver.findElement(By.xpath(&quot;//*[@id=&#39;input_last_name&#39;]&quot;));</b>
+<b class="fc">&nbsp;            WebElement emailAddress = driver.findElement(By.xpath(&quot;//*[@id=&#39;input_email_address&#39;]&quot;));</b>
+<b class="fc">&nbsp;            WebElement phoneNumber = driver.findElement(By.xpath(&quot;//*[@id=&#39;input_phone_number&#39;]&quot;));</b>
+<b class="fc">&nbsp;            WebElement preferredDate = driver.findElement(By.xpath(&quot;//*[@id=&#39;datepicker_preferred_date&#39;]&quot;));</b>
+<b class="fc">&nbsp;            WebElement preferredTime = driver.findElement(By.xpath(&quot;(//*/div[@class=&#39;choices__list choices__list--single&#39;])[9]&quot;));</b>
+<b class="fc">&nbsp;            WebElement preferredConsultant = driver.findElement(By.xpath(&quot;(//*[@data-value=&#39;Preferred sales consultant (optional)&#39;])[1]&quot;));</b>
+<b class="fc">&nbsp;            WebElement numberOfPax = driver.findElement(By.xpath(&quot;(//*[@data-value=&#39;Number of pax&#39;])[1]&quot;));</b>
+<b class="fc">&nbsp;            WebElement preferredModels = driver.findElement(By.xpath(&quot;(//*[@data-type=&#39;select-multiple&#39;])[1]&quot;));</b>
+<b class="fc">&nbsp;            WebElement testDriveOptions = driver.findElement(By.xpath(&quot;(//*[@class=&#39;choices__item choices__item--selectable&#39;])[2]&quot;));</b>
+<b class="fc">&nbsp;            WebElement termsAndServicesCheckbox = driver.findElement(By.xpath(&quot;//*[@id=&#39;checkbox_privacy_policy&#39;]&quot;));</b>
+<b class="fc">&nbsp;            WebElement marketingConsentCheckbox = driver.findElement(By.xpath(&quot;//*[@id=&#39;checkbox_marketing&#39;]&quot;));</b>
+<b class="fc">&nbsp;            WebElement submitButton = driver.findElement(By.xpath(&quot;//*[@type=&#39;submit&#39;]&quot;));</b>
+<b class="fc">&nbsp;            firstName.sendKeys(&quot;CPL&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Step 10 enter first name&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;            lastName.sendKeys(&quot;Test&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Step 11 enter last name&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;            emailAddress.sendKeys(&quot;qa@convertium.com&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Step 12 enter email address&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;            phoneNumber.sendKeys(&quot;+6591234567&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Step 13 enter phone number&quot;);</b>
+&nbsp;
+&nbsp;//                preferredDate.getAttribute(&quot;10 Jan 2021&quot;);
+&nbsp;//                System.out.println(&quot;Step 14 enter preferred date&quot;);
+&nbsp;            //calendar cannot retriev 2021 dates
+&nbsp;
+<b class="fc">&nbsp;            preferredTime.getAttribute(&quot;18:00&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Step 15 select preferred time&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;            numberOfPax.getAttribute(&quot;1&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Step 16 enter number of pax&quot;);</b>
+&nbsp;
+&nbsp;            // Verify Preferred models preselected as RX 300 -- this should be UX 300
+<b class="fc">&nbsp;            String selectedModel = preferredModels.getAttribute(&quot;value&quot;);</b>
+<b class="fc">&nbsp;            if (&quot;RX 300&quot;.equals(selectedModel)) {</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Step 17 Preferred models preselected as RX 300.&quot;);</b>
+&nbsp;            } else {
+<b class="fc">&nbsp;                System.out.println(&quot;Step 17 Preferred models not preselected as RX 300.&quot;);</b>
+&nbsp;            }
+&nbsp;
+&nbsp;            // Select Test drive Option as Lexus Test Drive Concierge
+<b class="fc">&nbsp;            testDriveOptions.getAttribute(&quot;Lexus Test Drive Concierge&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Step 18 Selected option: Lexus Test Drive Concierge&quot;);</b>
+&nbsp;
+&nbsp;            // Check terms and services
+<b class="fc">&nbsp;            termsAndServicesCheckbox.click();</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Step 19 terms and services checkbox checked.&quot;);</b>
+&nbsp;
+&nbsp;            // Check marketing consent
+<b class="fc">&nbsp;            marketingConsentCheckbox.click();</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Step 20 marketing consent checkbox checked.&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;            if (submitButton.isEnabled()) {</b>
+<b class="fc">&nbsp;                System.out.println(&quot;Step 21 Submit button is enabled&quot;);</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                System.out.println(&quot;Step 22 Submit button is not enabled&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;        } catch (Exception e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+&nbsp;        } finally {
+<b class="fc">&nbsp;            driver.quit();</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-09-11 15:28</div>
+</div>
+</body>
+</html>
