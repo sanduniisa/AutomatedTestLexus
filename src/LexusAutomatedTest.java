@@ -130,8 +130,8 @@ public class LexusAutomatedTest {
             phoneNumber.sendKeys("+6591234567");
             System.out.println("Step 13 enter phone number");
 
-//                preferredDate.getAttribute("10 Jan 2021");
-//                System.out.println("Step 14 enter preferred date");
+               preferredDate.getAttribute("10 Jan 2021");
+               System.out.println("Step 14 enter preferred date");
             //calendar cannot retriev 2021 dates
 
             preferredTime.getAttribute("18:00");
